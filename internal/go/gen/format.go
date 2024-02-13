@@ -10,9 +10,13 @@ const (
 // FormatDocComments formats documentation comment text (without // or /*)
 // into multiple lines of max length LineLength, prefixed by //, suitable
 // for inclusion as documentation comments in Go source code.
-func FormatDocComments(docs string) string {
+func FormatDocComments(docs string, indent bool) string {
 	if docs == "" {
 		return ""
+	}
+	space := ' '
+	if indent {
+		space = '\t'
 	}
 	var b strings.Builder
 	var lineLength = 0
@@ -38,7 +42,7 @@ func FormatDocComments(docs string) string {
 			}
 		default:
 			if lineLength == len(DocCommentPrefix) {
-				b.WriteRune(' ')
+				b.WriteRune(space)
 				lineLength++
 			}
 		}

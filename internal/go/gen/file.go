@@ -71,7 +71,7 @@ func (f *File) Bytes() ([]byte, error) {
 	}
 
 	if f.PackageDocs != "" {
-		b.WriteString(FormatDocComments(f.PackageDocs))
+		b.WriteString(FormatDocComments(f.PackageDocs, false))
 	}
 	b.WriteString("package ")
 	b.WriteString(f.Package.Name)

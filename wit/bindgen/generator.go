@@ -308,10 +308,10 @@ func (g *generator) defineTypeDef(t *wit.TypeDef, name string) error {
 
 	fmt.Fprintf(file, "// %s represents the %s \"%s#%s\".\n", id.Name, t.WITKind(), ownerID.String(), name)
 	fmt.Fprintf(file, "//\n")
-	fmt.Fprint(file, gen.FormatDocComments(t.WIT(nil, "")))
+	fmt.Fprint(file, gen.FormatDocComments(t.WIT(nil, ""), true))
 	fmt.Fprintf(file, "//\n")
 	if t.Docs.Contents != "" {
-		fmt.Fprintf(file, "//\n%s", gen.FormatDocComments(t.Docs.Contents))
+		fmt.Fprintf(file, "//\n%s", gen.FormatDocComments(t.Docs.Contents, false))
 	}
 	fmt.Fprintf(file, "type %s ", id.Name)
 	fmt.Fprint(file, g.typeDefExpr(file, t))
@@ -445,8 +445,11 @@ func (g *generator) defineImportedFunction(f *wit.Function, ownerID wit.Ident) e
 	snakeDecl := file.Declare(SnakeName(f.Name))
 
 	fmt.Fprintf(file, "// %s represents the %s \"%s#%s\".\n", funcDecl.Name, f.WITKind(), ownerID.String(), f.Name)
+	fmt.Fprintf(file, "//\n")
+	fmt.Fprint(file, gen.FormatDocComments(f.WIT(nil, f.Name), true))
+	fmt.Fprintf(file, "//\n")
 	if f.Docs.Contents != "" {
-		fmt.Fprintf(file, "//\n%s", gen.FormatDocComments(f.Docs.Contents))
+		fmt.Fprintf(file, "//\n%s", gen.FormatDocComments(f.Docs.Contents, false))
 	}
 	fmt.Fprintf(file, "func %s()\n\n", funcDecl.Name)
 	fmt.Fprintf(file, "//go:wasmimport %s %s\n", ownerID.String(), f.Name)
