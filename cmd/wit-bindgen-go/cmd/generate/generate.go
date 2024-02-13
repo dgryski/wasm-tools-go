@@ -81,6 +81,13 @@ func action(ctx context.Context, cmd *cli.Command) error {
 	fmt.Fprintf(os.Stderr, "Generated %d package(s)\n", len(packages))
 
 	for _, pkg := range packages {
+		if !pkg.HasContent() {
+			fmt.Fprintf(os.Stderr, "Skipping empty package: %s\n", pkg.Path)
+			continue
+		}
+
+		fmt.Fprintf(os.Stderr, "Generated package: %s\n", pkg.Path)
+
 		for _, filename := range codec.SortedKeys(pkg.Files) {
 			file := pkg.Files[filename]
 
@@ -96,7 +103,7 @@ func action(ctx context.Context, cmd *cli.Command) error {
 			}
 
 			path := filepath.Join(dir, file.Name)
-			fmt.Fprintf(os.Stderr, "Generated: %s\n", path)
+			fmt.Fprintf(os.Stderr, "Generated file: %s\n", path)
 
 			if dryRun {
 				fmt.Println(string(b))

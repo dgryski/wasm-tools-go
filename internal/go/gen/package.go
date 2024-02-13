@@ -53,3 +53,14 @@ func (pkg *Package) HasPackageDocs() bool {
 	}
 	return false
 }
+
+// HasContent returns true if pkg contains at least 1 [File]
+// with non-empty content.
+func (pkg *Package) HasContent() bool {
+	for _, file := range pkg.Files {
+		if len(file.Content) > 0 {
+			return true
+		}
+	}
+	return false
+}
