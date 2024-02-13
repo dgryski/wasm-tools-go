@@ -156,16 +156,7 @@ func (g *generator) declareTypeDef(t *wit.TypeDef) error {
 	}
 	name := *t.Name
 
-	var ownerID wit.Ident
-	switch owner := t.Owner.(type) {
-	case *wit.World:
-		ownerID = owner.Package.Name
-		ownerID.Extension = owner.Name
-	case *wit.Interface:
-		ownerID = owner.Package.Name
-		ownerID.Extension = *owner.Name // FIXME: this might panic
-	}
-
+	ownerID := typeDefOwner(t)
 	pkg := g.packageForIdent(ownerID)
 	file := pkg.File(ownerID.Extension + GoSuffix)
 	file.GeneratedBy = g.opts.generatedBy
@@ -176,6 +167,23 @@ func (g *generator) declareTypeDef(t *wit.TypeDef) error {
 	// fmt.Fprintf(os.Stderr, "Type:\t%s.%s\n\t%s.%s\n", ownerID.String(), name, decl.Package.Path, decl.Name)
 
 	return nil
+}
+
+func typeDefOwner(t *wit.TypeDef) wit.Ident {
+	var id wit.Ident
+	switch owner := t.Owner.(type) {
+	case *wit.World:
+		id = owner.Package.Name
+		id.Extension = owner.Name
+	case *wit.Interface:
+		id = owner.Package.Name
+		if owner.Name == nil {
+			id.Extension = "unknown"
+		} else {
+			id.Extension = *owner.Name
+		}
+	}
+	return id
 }
 
 func (g *generator) defineInterfaces() error {
@@ -292,16 +300,7 @@ func (g *generator) defineTypeDef(t *wit.TypeDef, name string) error {
 		return nil
 	}
 
-	var ownerID wit.Ident
-	switch owner := t.Owner.(type) {
-	case *wit.World:
-		ownerID = owner.Package.Name
-		ownerID.Extension = owner.Name
-	case *wit.Interface:
-		ownerID = owner.Package.Name
-		ownerID.Extension = *owner.Name // FIXME: this might panic
-	}
-
+	ownerID := typeDefOwner(t)
 	pkg := id.Package
 	file := pkg.File(ownerID.Extension + GoSuffix)
 	file.GeneratedBy = g.opts.generatedBy
