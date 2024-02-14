@@ -394,9 +394,9 @@ func TestHandlesAreResources(t *testing.T) {
 			for i, td := range res.TypeDefs {
 				var handleType *TypeDef
 				switch kind := td.Kind.(type) {
-				case *OwnedHandle:
+				case *Own:
 					handleType = kind.Type
-				case *BorrowedHandle:
+				case *Borrow:
 					handleType = kind.Type
 				default:
 					continue

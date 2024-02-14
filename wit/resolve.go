@@ -375,20 +375,20 @@ func (_handle) Size() uintptr { return 4 }
 // [ABI byte alignment]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md#alignment
 func (_handle) Align() uintptr { return 4 }
 
-// OwnedHandle represents an WIT [owned handle].
+// Own represents an WIT [owned handle].
 // It implements the [Handle], [Node], [Sized], and [TypeDefKind] interfaces.
 //
 // [owned handle]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md#handles
-type OwnedHandle struct {
+type Own struct {
 	_handle
 	Type *TypeDef
 }
 
-// BorrowedHandle represents a WIT [borrowed handle].
+// Borrow represents a WIT [borrowed handle].
 // It implements the [Handle], [Node], [Sized], and [TypeDefKind] interfaces.
 //
 // [borrowed handle]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md#handles
-type BorrowedHandle struct {
+type Borrow struct {
 	_handle
 	Type *TypeDef
 }

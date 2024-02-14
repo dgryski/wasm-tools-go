@@ -427,12 +427,12 @@ func (r *Resource) WIT(ctx Node, name string) string {
 }
 
 // WITKind returns the WIT kind.
-func (*OwnedHandle) WITKind() string { return "owned handle" }
+func (*Own) WITKind() string { return "owned handle" }
 
-// WIT returns the [WIT] text format for [OwnedHandle] h.
+// WIT returns the [WIT] text format for [Own] h.
 //
 // [WIT]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md
-func (h *OwnedHandle) WIT(ctx Node, name string) string {
+func (h *Own) WIT(ctx Node, name string) string {
 	var b strings.Builder
 	if name != "" {
 		b.WriteString("type ")
@@ -446,12 +446,12 @@ func (h *OwnedHandle) WIT(ctx Node, name string) string {
 }
 
 // WITKind returns the WIT kind.
-func (*BorrowedHandle) WITKind() string { return "borrowed handle" }
+func (*Borrow) WITKind() string { return "borrowed handle" }
 
-// WIT returns the [WIT] text format for [BorrowedHandle] h.
+// WIT returns the [WIT] text format for [Borrow] h.
 //
 // [WIT]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md
-func (h *BorrowedHandle) WIT(ctx Node, name string) string {
+func (h *Borrow) WIT(ctx Node, name string) string {
 	var b strings.Builder
 	if name != "" {
 		b.WriteString("type ")

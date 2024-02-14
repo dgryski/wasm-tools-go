@@ -328,10 +328,10 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 		return g.recordRep(file, kind)
 	case *wit.Resource:
 		return g.resourceRep(file, kind)
-	case *wit.OwnedHandle:
-		return "any /* TODO: *wit.OwnedHandle */"
-	case *wit.BorrowedHandle:
-		return "any /* TODO: *wit.BorrowedHandle */"
+	case *wit.Own:
+		return "any /* TODO: *wit.Own */"
+	case *wit.Borrow:
+		return "any /* TODO: *wit.Borrow */"
 	case *wit.Flags:
 		return "any /* TODO: *wit.Flags */"
 	case *wit.Enum:
