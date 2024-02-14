@@ -551,20 +551,21 @@ func (g *generator) defineImportedFunction(f *wit.Function, ownerID wit.Ident) e
 
 	// Emit results
 	results := make(map[string]string, len(f.Results))
-	if len(f.Results) > 0 {
-		b.WriteString(" (")
-		if len(f.Results) > 1 {
-			b.WriteRune('(')
+	if len(f.Results) == 1 {
+		r := f.Results[0]
+		if r.Name == "" {
+			results[r.Name] = "result"
+		} else {
+			results[r.Name] = GoName(r.Name, false)
 		}
+		b.WriteString(g.typeRep(file, r.Type))
+	} else if len(f.Results) > 0 {
+		b.WriteRune('(')
 		for i, r := range f.Results {
 			if i > 0 {
 				b.WriteString(", ")
 			}
-			if r.Name == "" {
-				results[r.Name] = "result"
-			} else {
-				results[r.Name] = GoName(r.Name, false)
-			}
+			results[r.Name] = GoName(r.Name, false)
 			b.WriteString(results[r.Name])
 			b.WriteRune(' ')
 			b.WriteString(g.typeRep(file, r.Type))
