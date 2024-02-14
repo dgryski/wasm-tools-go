@@ -321,7 +321,7 @@ func (g *generator) defineTypeDef(t *wit.TypeDef, name string) error {
 func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDef) string {
 	switch kind := t.Kind.(type) {
 	case wit.Type:
-		return g.typeRep(file, typeName, kind)
+		return g.typeRep(file, kind)
 	case *wit.Record:
 		return g.recordRep(file, kind)
 	case *wit.Resource:
@@ -353,7 +353,7 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 	}
 }
 
-func (g *generator) typeRep(file *gen.File, typeName gen.Ident, t wit.Type) string {
+func (g *generator) typeRep(file *gen.File, t wit.Type) string {
 	switch t := t.(type) {
 	case *wit.TypeDef:
 		if id, ok := g.typeDefs[t]; ok {
@@ -364,7 +364,7 @@ func (g *generator) typeRep(file *gen.File, typeName gen.Ident, t wit.Type) stri
 		// See https://component-model.bytecodealliance.org/design/wit.html#built-in-types
 		// and https://component-model.bytecodealliance.org/design/wit.html#user-defined-types.
 		// TODO: add wit.Type.BuiltIn() method?
-		return g.typeDefRep(file, typeName, t)
+		return g.typeDefRep(file, gen.Ident{}, t)
 	case wit.Primitive:
 		return g.primitiveRep(file, t)
 	default:
@@ -424,7 +424,7 @@ func (g *generator) resourceRep(file *gen.File, r *wit.Resource) string {
 func (g *generator) enumRep(file *gen.File, typeName gen.Ident, e *wit.Enum) string {
 	var b strings.Builder
 	disc := wit.Discriminant(len(e.Cases))
-	b.WriteString(g.typeRep(file, gen.Ident{}, disc))
+	b.WriteString(g.typeRep(file, disc))
 	b.WriteString("\n\n")
 	b.WriteString("const (\n")
 	for i, c := range e.Cases {
