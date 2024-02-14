@@ -358,6 +358,7 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 func (g *generator) typeRep(file *gen.File, t wit.Type) string {
 	switch t := t.(type) {
 	case *wit.TypeDef:
+		t = t.Root()
 		if id, ok := g.typeDefs[t]; ok {
 			return file.Ident(id)
 		}
@@ -564,7 +565,7 @@ func (g *generator) defineImportedFunction(f *wit.Function, ownerID wit.Ident) e
 			} else {
 				results[r.Name] = GoName(r.Name, false)
 			}
-			b.WriteString(params[r.Name])
+			b.WriteString(results[r.Name])
 			b.WriteRune(' ')
 			b.WriteString(g.typeRep(file, r.Type))
 		}
