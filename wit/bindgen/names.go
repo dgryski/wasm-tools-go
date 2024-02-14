@@ -17,9 +17,8 @@ func GoPackageName(name string) string {
 	}, strings.ToLower(name))
 }
 
-// GoName returns an idiomatic (exported CamelCase) Go name for a WIT name.
-// It may conflict with a Go keyword or predeclared identifier.
-func GoName(name string) string {
+// ExportedName returns an idiomatic (exported CamelCase) Go name for a WIT name.
+func ExportedName(name string) string {
 	var b strings.Builder
 	for _, word := range words(strings.ToLower(name)) {
 		if s, ok := CommonWords[word]; ok {

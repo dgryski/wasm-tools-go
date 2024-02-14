@@ -161,7 +161,7 @@ func (g *generator) declareTypeDef(t *wit.TypeDef) error {
 	file := pkg.File(ownerID.Extension + GoSuffix)
 	file.GeneratedBy = g.opts.generatedBy
 
-	id := file.Declare(GoName(name))
+	id := file.Declare(ExportedName(name))
 	g.types[t] = id
 
 	// fmt.Fprintf(os.Stderr, "Type:\t%s.%s\n\t%s.%s\n", ownerID.String(), name, decl.Package.Path, decl.Name)
@@ -421,7 +421,7 @@ func (g *generator) enumRep(file *gen.File, typeName gen.Ident, e *wit.Enum) str
 	b.WriteString("const (\n")
 	for i, c := range e.Cases {
 		b.WriteString(gen.FormatDocComments(c.Docs.Contents, false))
-		caseName := file.Declare(typeName.Name + GoName(c.Name))
+		caseName := file.Declare(typeName.Name + ExportedName(c.Name))
 		b.WriteString(caseName.Name)
 		if i == 0 {
 			b.WriteRune(' ')
@@ -453,7 +453,7 @@ func (g *generator) defineImportedFunction(f *wit.Function, ownerID wit.Ident) e
 	file := pkg.File(ownerID.Extension + GoSuffix)
 	file.GeneratedBy = g.opts.generatedBy
 
-	funcDecl := file.Declare(GoName(f.Name))
+	funcDecl := file.Declare(ExportedName(f.Name))
 	g.funcs[f] = funcDecl
 	snakeDecl := file.Declare(SnakeName(f.Name))
 
