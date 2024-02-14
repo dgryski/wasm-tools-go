@@ -329,9 +329,9 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 	case *wit.Resource:
 		return g.resourceRep(file, kind)
 	case *wit.Own:
-		return "any /* TODO: *wit.Own */"
+		return g.ownRep(file, kind)
 	case *wit.Borrow:
-		return "any /* TODO: *wit.Borrow */"
+		return g.borrowRep(file, kind)
 	case *wit.Flags:
 		return "any /* TODO: *wit.Flags */"
 	case *wit.Enum:
@@ -427,6 +427,14 @@ func (g *generator) resourceRep(file *gen.File, r *wit.Resource) string {
 	b.WriteString(".Resource")
 	b.WriteString("\n\n// TODO: resource methods")
 	return b.String()
+}
+
+func (g *generator) ownRep(file *gen.File, o *wit.Own) string {
+	return g.typeRep(file, o.Type)
+}
+
+func (g *generator) borrowRep(file *gen.File, b *wit.Borrow) string {
+	return g.typeRep(file, b.Type)
 }
 
 func (g *generator) tupleRep(file *gen.File, t *wit.Tuple) string {

@@ -432,7 +432,7 @@ func (*Own) WITKind() string { return "owned handle" }
 // WIT returns the [WIT] text format for [Own] h.
 //
 // [WIT]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md
-func (h *Own) WIT(ctx Node, name string) string {
+func (o *Own) WIT(ctx Node, name string) string {
 	var b strings.Builder
 	if name != "" {
 		b.WriteString("type ")
@@ -440,7 +440,7 @@ func (h *Own) WIT(ctx Node, name string) string {
 		b.WriteString(" = ")
 	}
 	b.WriteString("own<")
-	b.WriteString(h.Type.WIT(h, ""))
+	b.WriteString(o.Type.WIT(o, ""))
 	b.WriteRune('>')
 	return b.String()
 }
@@ -451,17 +451,17 @@ func (*Borrow) WITKind() string { return "borrowed handle" }
 // WIT returns the [WIT] text format for [Borrow] h.
 //
 // [WIT]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md
-func (h *Borrow) WIT(ctx Node, name string) string {
-	var b strings.Builder
+func (b *Borrow) WIT(ctx Node, name string) string {
+	var s strings.Builder
 	if name != "" {
-		b.WriteString("type ")
-		b.WriteString(escape(name))
-		b.WriteString(" = ")
+		s.WriteString("type ")
+		s.WriteString(escape(name))
+		s.WriteString(" = ")
 	}
-	b.WriteString("borrow<")
-	b.WriteString(h.Type.WIT(h, ""))
-	b.WriteRune('>')
-	return b.String()
+	s.WriteString("borrow<")
+	s.WriteString(b.Type.WIT(b, ""))
+	s.WriteRune('>')
+	return s.String()
 }
 
 // WITKind returns the WIT kind.
