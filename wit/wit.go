@@ -396,6 +396,9 @@ func (r *Record) WIT(ctx Node, name string) string {
 		b.WriteRune('\n')
 	}
 	b.WriteRune('}')
+	if ctx == nil {
+		return b.String()
+	}
 	return unwrap(b.String())
 }
 
@@ -481,6 +484,9 @@ func (f *Flags) WIT(ctx Node, name string) string {
 		}
 	}
 	b.WriteRune('}')
+	if ctx == nil {
+		return b.String()
+	}
 	return unwrap(b.String())
 }
 
@@ -544,6 +550,9 @@ func (v *Variant) WIT(ctx Node, name string) string {
 		b.WriteRune('\n')
 	}
 	b.WriteRune('}')
+	if ctx == nil {
+		return b.String()
+	}
 	return unwrap(b.String())
 }
 
@@ -589,6 +598,9 @@ func (e *Enum) WIT(ctx Node, name string) string {
 		b.WriteRune('\n')
 	}
 	b.WriteRune('}')
+	if ctx == nil {
+		return b.String()
+	}
 	return unwrap(b.String())
 }
 
