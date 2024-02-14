@@ -570,7 +570,6 @@ func (g *generator) defineImportedFunction(f *wit.Function, ownerID wit.Ident) e
 	b.WriteRune(' ')
 	b.WriteString(f.Name)
 	b.WriteRune('\n')
-	// fmt.Fprintf(&b, "//go:wasmimport %s %s\n", ownerID.String(), f.Name)
 	b.WriteString("func ")
 	b.WriteString(snakeID.Name)
 	b.WriteString("(/* TODO: wasmimport params */)\n")
