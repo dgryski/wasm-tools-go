@@ -54,8 +54,8 @@ type generator struct {
 	// interfacePackages map [wit.Interface] to Go packages.
 	interfacePackages map[*wit.Interface]*gen.Package
 
-	// types map [wit.TypeDef] to their equivalent Go identifier.
-	types map[*wit.TypeDef]gen.Ident
+	// typeDefs map [wit.TypeDef] to their equivalent Go identifier.
+	typeDefs map[*wit.TypeDef]gen.Ident
 
 	// funcs map [wit.Function] to their equivalent Go identifier.
 	funcs map[*wit.Function]gen.Ident
@@ -70,7 +70,7 @@ func newGenerator(res *wit.Resolve, opts ...Option) (*generator, error) {
 		witPackages:       make(map[string]*gen.Package),
 		worldPackages:     make(map[*wit.World]*gen.Package),
 		interfacePackages: make(map[*wit.Interface]*gen.Package),
-		types:             make(map[*wit.TypeDef]gen.Ident),
+		typeDefs:          make(map[*wit.TypeDef]gen.Ident),
 		funcs:             make(map[*wit.Function]gen.Ident),
 		defined:           make(map[gen.Ident]bool),
 	}
@@ -162,7 +162,7 @@ func (g *generator) declareTypeDef(t *wit.TypeDef) error {
 	file.GeneratedBy = g.opts.generatedBy
 
 	id := file.Declare(GoName(name, true))
-	g.types[t] = id
+	g.typeDefs[t] = id
 
 	// fmt.Fprintf(os.Stderr, "Type:\t%s.%s\n\t%s.%s\n", ownerID.String(), name, decl.Package.Path, decl.Name)
 
@@ -288,7 +288,7 @@ func (g *generator) defineTypeDef(t *wit.TypeDef, name string) error {
 		name = *t.Name
 	}
 
-	id := g.types[t]
+	id := g.typeDefs[t]
 	if id == (gen.Ident{}) {
 		return fmt.Errorf("typedef %s not declared", name)
 	}
@@ -356,6 +356,9 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 func (g *generator) typeRep(file *gen.File, typeName gen.Ident, t wit.Type) string {
 	switch t := t.(type) {
 	case *wit.TypeDef:
+		if id, ok := g.typeDefs[t]; ok {
+			return file.Ident(id)
+		}
 		return g.typeDefRep(file, typeName, t)
 	case wit.Primitive:
 		return g.primitiveRep(file, t)

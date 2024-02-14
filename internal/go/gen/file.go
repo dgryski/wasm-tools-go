@@ -104,12 +104,30 @@ func (f *File) Declare(name string) Ident {
 // The returned local name may differ from the specified local name.
 func (f *File) Import(path string) string {
 	path, name := ParseSelector(path)
+	if path == f.Package.Path {
+		// Can't import self
+		return ""
+	}
 	if f.Imports[path] != "" {
 		return f.Imports[path]
 	}
 	name = Unique(name, IsReserved, HasKey(f.Imports), HasKey(f.Package.Declared))
 	f.Imports[path] = name
 	return name
+}
+
+// Ident returns a file and package-relative string representation of id.
+// It ensures that the file imports id's package, if different.
+// If id and f are in the same package, it returns the local name.
+// If id is in a different package than f, then f first imports id's package,
+// then returns a name prefixed with the imported package name.
+func (f *File) Ident(id Ident) string {
+	// FIXME: is this redundant, but safer?
+	if id.Package == f.Package || id.Package.Path == f.Package.Path {
+		return id.Name
+	}
+	pkgName := f.Import(id.Package.Path + "#" + id.Package.Name)
+	return pkgName + "." + id.Name
 }
 
 // Imports returns Go import syntax for imports.
