@@ -30,7 +30,7 @@
                                 _type:      wit._type{},
                                 _worldItem: wit._worldItem{},
                                 Name:       (*string)(nil),
-                                Kind:       &wit.BorrowedHandle{
+                                Kind:       &wit.Borrow{
                                     _handle: wit._handle{},
                                     Type:    &wit.TypeDef{(CYCLIC REFERENCE)},
                                 },
@@ -50,7 +50,7 @@
                                 _type:      wit._type{},
                                 _worldItem: wit._worldItem{},
                                 Name:       (*string)(nil),
-                                Kind:       &wit.OwnedHandle{
+                                Kind:       &wit.Own{
                                     _handle: wit._handle{},
                                     Type:    &wit.TypeDef{(CYCLIC REFERENCE)},
                                 },
@@ -72,7 +72,7 @@
                                 _type:      wit._type{},
                                 _worldItem: wit._worldItem{},
                                 Name:       (*string)(nil),
-                                Kind:       &wit.OwnedHandle{
+                                Kind:       &wit.Own{
                                     _handle: wit._handle{},
                                     Type:    &wit.TypeDef{(CYCLIC REFERENCE)},
                                 },
@@ -114,7 +114,7 @@
             _type:      wit._type{},
             _worldItem: wit._worldItem{},
             Name:       (*string)(nil),
-            Kind:       &wit.BorrowedHandle{
+            Kind:       &wit.Borrow{
                 _handle: wit._handle{},
                 Type:    &wit.TypeDef{(CYCLIC REFERENCE)},
             },
@@ -125,7 +125,7 @@
             _type:      wit._type{},
             _worldItem: wit._worldItem{},
             Name:       (*string)(nil),
-            Kind:       &wit.OwnedHandle{
+            Kind:       &wit.Own{
                 _handle: wit._handle{},
                 Type:    &wit.TypeDef{(CYCLIC REFERENCE)},
             },
