@@ -343,7 +343,7 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 	case *wit.Option:
 		return g.optionRep(file, kind)
 	case *wit.Result:
-		return "any /* TODO: *wit.Result */"
+		return g.resultRep(file, kind)
 	case *wit.List:
 		return g.listRep(file, kind)
 	case *wit.Future:
@@ -357,6 +357,10 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 
 func (g *generator) typeRep(file *gen.File, t wit.Type) string {
 	switch t := t.(type) {
+	// Special-case nil for the _ in result<T, _>
+	case nil:
+		return "struct{}"
+
 	case *wit.TypeDef:
 		t = t.Root()
 		if id, ok := g.typeDefs[t]; ok {
@@ -491,6 +495,36 @@ func (g *generator) optionRep(file *gen.File, o *wit.Option) string {
 	b.WriteRune('[')
 	b.WriteString(g.typeRep(file, o.Type))
 	b.WriteRune(']')
+	return b.String()
+}
+
+func (g *generator) resultRep(file *gen.File, r *wit.Result) string {
+	var b strings.Builder
+	b.WriteString(file.Import(g.opts.cmPackage))
+	switch {
+	case r.OK == nil && r.Err == nil:
+		b.WriteString(".UntypedResult")
+	case r.OK == nil:
+		b.WriteString(".ErrResult[")
+		b.WriteString(g.typeRep(file, r.Err))
+		b.WriteRune(']')
+	case r.Err == nil:
+		b.WriteString(".OKResult[")
+		b.WriteString(g.typeRep(file, r.OK))
+		b.WriteRune(']')
+	default:
+		b.WriteString(".Result[")
+		shape := r.OK
+		if r.Err.Size() > r.OK.Size() {
+			shape = r.Err
+		}
+		b.WriteString(g.typeRep(file, shape))
+		b.WriteString(", ")
+		b.WriteString(g.typeRep(file, r.OK))
+		b.WriteString(", ")
+		b.WriteString(g.typeRep(file, r.Err))
+		b.WriteRune(']')
+	}
 	return b.String()
 }
 
