@@ -359,6 +359,11 @@ func (g *generator) typeRep(file *gen.File, typeName gen.Ident, t wit.Type) stri
 		if id, ok := g.typeDefs[t]; ok {
 			return file.Ident(id)
 		}
+		// FIXME: this is only valid for built-in WIT types.
+		// User-defined types must be named, so the Ident check above must have succeeded.
+		// See https://component-model.bytecodealliance.org/design/wit.html#built-in-types
+		// and https://component-model.bytecodealliance.org/design/wit.html#user-defined-types.
+		// TODO: add wit.Type.BuiltIn() method?
 		return g.typeDefRep(file, typeName, t)
 	case wit.Primitive:
 		return g.primitiveRep(file, t)
