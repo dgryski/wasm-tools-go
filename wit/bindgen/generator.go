@@ -439,7 +439,9 @@ func (g *generator) tupleRep(file *gen.File, t *wit.Tuple) string {
 	} else {
 		b.WriteString(file.Import(g.opts.cmPackage))
 		b.WriteString("Tuple")
-		b.WriteString(strconv.Itoa(len(t.Types)))
+		if len(t.Types) > 2 {
+			b.WriteString(strconv.Itoa(len(t.Types)))
+		}
 		b.WriteRune('[')
 		for i, typ := range t.Types {
 			if i > 0 {
