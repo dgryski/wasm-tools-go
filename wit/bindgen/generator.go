@@ -312,20 +312,20 @@ func (g *generator) defineTypeDef(t *wit.TypeDef, name string) error {
 		fmt.Fprintf(file, "//\n%s", gen.FormatDocComments(t.Docs.Contents, false))
 	}
 	fmt.Fprintf(file, "type %s ", id.Name)
-	fmt.Fprint(file, g.typeDefExpr(file, t))
+	fmt.Fprint(file, g.typeDefRep(file, t))
 	fmt.Fprint(file, "\n\n")
 
 	return nil
 }
 
-func (g *generator) typeDefExpr(file *gen.File, t *wit.TypeDef) string {
+func (g *generator) typeDefRep(file *gen.File, t *wit.TypeDef) string {
 	switch kind := t.Kind.(type) {
 	case wit.Type:
-		return g.typeExpr(file, kind)
+		return g.typeRep(file, kind)
 	case *wit.Record:
-		return g.recordExpr(file, kind)
+		return g.recordRep(file, kind)
 	case *wit.Resource:
-		return g.resourceExpr(file, kind)
+		return g.resourceRep(file, kind)
 	case *wit.OwnedHandle:
 		return "any /* TODO: *wit.OwnedHandle */"
 	case *wit.BorrowedHandle:
@@ -333,13 +333,13 @@ func (g *generator) typeDefExpr(file *gen.File, t *wit.TypeDef) string {
 	case *wit.Flags:
 		return "any /* TODO: *wit.Flags */"
 	case *wit.Enum:
-		return g.enumExpr(file, kind)
+		return g.enumRep(file, kind)
 	case *wit.Tuple:
 		return "any /* TODO: *wit.Tuple */"
 	case *wit.Variant:
 		return "any /* TODO: *wit.Variant */"
 	case *wit.Option:
-		return g.optionExpr(file, kind)
+		return g.optionRep(file, kind)
 	case *wit.Result:
 		return "any /* TODO: *wit.Result */"
 	case *wit.List:
@@ -353,18 +353,18 @@ func (g *generator) typeDefExpr(file *gen.File, t *wit.TypeDef) string {
 	}
 }
 
-func (g *generator) typeExpr(file *gen.File, t wit.Type) string {
+func (g *generator) typeRep(file *gen.File, t wit.Type) string {
 	switch t := t.(type) {
 	case *wit.TypeDef:
-		return g.typeDefExpr(file, t)
+		return g.typeDefRep(file, t)
 	case wit.Primitive:
-		return g.primitiveExpr(file, t)
+		return g.primitiveRep(file, t)
 	default:
 		panic(fmt.Sprintf("BUG: unknown wit.Type %T", t)) // should never reach here
 	}
 }
 
-func (g *generator) primitiveExpr(file *gen.File, p wit.Primitive) string {
+func (g *generator) primitiveRep(file *gen.File, p wit.Primitive) string {
 	switch p := p.(type) {
 	case wit.Bool:
 		return "bool"
@@ -397,13 +397,13 @@ func (g *generator) primitiveExpr(file *gen.File, p wit.Primitive) string {
 	}
 }
 
-func (g *generator) recordExpr(file *gen.File, r *wit.Record) string {
+func (g *generator) recordRep(file *gen.File, r *wit.Record) string {
 	var b strings.Builder
 	b.WriteString("struct { /* TODO: record fields */ }")
 	return b.String()
 }
 
-func (g *generator) resourceExpr(file *gen.File, r *wit.Resource) string {
+func (g *generator) resourceRep(file *gen.File, r *wit.Resource) string {
 	var b strings.Builder
 	b.WriteString(file.Import(g.opts.cmPackage))
 	b.WriteString(".Resource")
@@ -411,15 +411,15 @@ func (g *generator) resourceExpr(file *gen.File, r *wit.Resource) string {
 	return b.String()
 }
 
-func (g *generator) enumExpr(file *gen.File, e *wit.Enum) string {
+func (g *generator) enumRep(file *gen.File, e *wit.Enum) string {
 	var b strings.Builder
 	disc := wit.Discriminant(len(e.Cases))
-	b.WriteString(g.typeExpr(file, disc))
+	b.WriteString(g.typeRep(file, disc))
 	b.WriteString("\n\n// TODO: const enum cases")
 	return b.String()
 }
 
-func (g *generator) optionExpr(file *gen.File, r *wit.Option) string {
+func (g *generator) optionRep(file *gen.File, r *wit.Option) string {
 	var b strings.Builder
 	b.WriteString(file.Import(g.opts.cmPackage))
 	b.WriteString(".Option[any /* TODO */]")
