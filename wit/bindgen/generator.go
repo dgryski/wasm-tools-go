@@ -399,7 +399,9 @@ func (g *generator) primitiveRep(file *gen.File, p wit.Primitive) string {
 
 func (g *generator) recordRep(file *gen.File, r *wit.Record) string {
 	var b strings.Builder
-	b.WriteString("struct { /* TODO: record fields */ }")
+	b.WriteString("struct {")
+	b.WriteString("TODO any // TODO: record fields\n")
+	b.WriteString("}")
 	return b.String()
 }
 
