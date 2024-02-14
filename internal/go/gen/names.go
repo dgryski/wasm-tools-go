@@ -54,6 +54,7 @@ var reserved = mapWords(
 	"defer",
 	"else",
 	"fallthrough",
+	"fifo",
 	"for",
 	"func",
 	"go",
