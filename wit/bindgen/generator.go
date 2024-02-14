@@ -4,6 +4,7 @@
 package bindgen
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -467,20 +468,78 @@ func (g *generator) defineImportedFunction(f *wit.Function, ownerID wit.Ident) e
 	file := pkg.File(ownerID.Extension + GoSuffix)
 	file.GeneratedBy = g.opts.generatedBy
 
-	funcDecl := file.Declare(GoName(f.Name, true))
-	g.funcs[f] = funcDecl
-	snakeDecl := file.Declare(SnakeName(f.Name))
+	funcID := file.Declare(GoName(f.Name, true))
+	g.funcs[f] = funcID
+	snakeID := file.Declare(SnakeName(f.Name))
 
-	fmt.Fprintf(file, "// %s represents the %s \"%s#%s\".\n", funcDecl.Name, f.WITKind(), ownerID.String(), f.Name)
-	fmt.Fprintf(file, "//\n")
-	fmt.Fprint(file, gen.FormatDocComments(f.WIT(nil, f.Name), true))
-	fmt.Fprintf(file, "//\n")
+	var b bytes.Buffer
+
+	fmt.Fprintf(&b, "// %s represents the imported Component Model %s \"%s#%s\".\n", funcID.Name, f.WITKind(), ownerID.String(), f.Name)
+	b.WriteString("//\n")
+	b.WriteString(gen.FormatDocComments(f.WIT(nil, f.Name), true))
+	b.WriteString("//\n")
 	if f.Docs.Contents != "" {
-		fmt.Fprintf(file, "//\n%s", gen.FormatDocComments(f.Docs.Contents, false))
+		b.WriteString("//\n")
+		b.WriteString(gen.FormatDocComments(f.Docs.Contents, false))
 	}
-	fmt.Fprintf(file, "func %s()\n\n", funcDecl.Name)
-	fmt.Fprintf(file, "//go:wasmimport %s %s\n", ownerID.String(), f.Name)
-	fmt.Fprintf(file, "func %s()\n\n", snakeDecl.Name)
+
+	// Emit function name
+	b.WriteString("func ")
+	b.WriteString(funcID.Name)
+	b.WriteRune('(')
+
+	// Emit params
+	params := make(map[string]string, len(f.Params))
+	for i, p := range f.Params {
+		if i > 0 {
+			b.WriteString(", ")
+		}
+		params[p.Name] = GoName(p.Name, false)
+		b.WriteString(params[p.Name])
+		b.WriteRune(' ')
+		b.WriteString(g.typeRep(file, p.Type))
+	}
+	b.WriteString(")")
+
+	// Emit results
+	results := make(map[string]string, len(f.Results))
+	if len(f.Results) > 0 {
+		b.WriteString(" (")
+		if len(f.Results) > 1 {
+			b.WriteRune('(')
+		}
+		for i, r := range f.Results {
+			if i > 0 {
+				b.WriteString(", ")
+			}
+			if r.Name == "" {
+				results[r.Name] = "result"
+			} else {
+				results[r.Name] = GoName(r.Name, false)
+			}
+			b.WriteString(params[r.Name])
+			b.WriteRune(' ')
+			b.WriteString(g.typeRep(file, r.Type))
+		}
+		b.WriteRune(')')
+	}
+	b.WriteString("\n\n")
+
+	// Emit wasmimport func
+	b.WriteString("//go:wasmimport ")
+	b.WriteString(ownerID.String())
+	b.WriteRune(' ')
+	b.WriteString(f.Name)
+	b.WriteRune('\n')
+	// fmt.Fprintf(&b, "//go:wasmimport %s %s\n", ownerID.String(), f.Name)
+	b.WriteString("func ")
+	b.WriteString(snakeID.Name)
+	b.WriteString("(/* TODO: wasmimport params */)\n")
+
+	_, err := file.Write(b.Bytes())
+	if err != nil {
+		return err
+	}
 
 	return g.ensureEmptyAsm(pkg)
 }
