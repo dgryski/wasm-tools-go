@@ -345,7 +345,7 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 	case *wit.Result:
 		return "any /* TODO: *wit.Result */"
 	case *wit.List:
-		return "any /* TODO: *wit.List */"
+		return g.listRep(file, kind)
 	case *wit.Future:
 		return "any /* TODO: *wit.Future */"
 	case *wit.Stream:
@@ -438,7 +438,7 @@ func (g *generator) tupleRep(file *gen.File, t *wit.Tuple) string {
 		b.WriteString(g.typeRep(file, mono))
 	} else {
 		b.WriteString(file.Import(g.opts.cmPackage))
-		b.WriteString("Tuple")
+		b.WriteString(".Tuple")
 		if len(t.Types) > 2 {
 			b.WriteString(strconv.Itoa(len(t.Types)))
 		}
@@ -475,10 +475,23 @@ func (g *generator) enumRep(file *gen.File, typeName gen.Ident, e *wit.Enum) str
 	return b.String()
 }
 
-func (g *generator) optionRep(file *gen.File, r *wit.Option) string {
+func (g *generator) optionRep(file *gen.File, o *wit.Option) string {
 	var b strings.Builder
 	b.WriteString(file.Import(g.opts.cmPackage))
-	b.WriteString(".Option[any /* TODO */]")
+	b.WriteString(".Option")
+	b.WriteRune('[')
+	b.WriteString(g.typeRep(file, o.Type))
+	b.WriteRune(']')
+	return b.String()
+}
+
+func (g *generator) listRep(file *gen.File, l *wit.List) string {
+	var b strings.Builder
+	b.WriteString(file.Import(g.opts.cmPackage))
+	b.WriteString(".List")
+	b.WriteRune('[')
+	b.WriteString(g.typeRep(file, l.Type))
+	b.WriteRune(']')
 	return b.String()
 }
 
