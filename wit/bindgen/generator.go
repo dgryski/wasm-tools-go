@@ -407,8 +407,14 @@ func (g *generator) primitiveRep(file *gen.File, p wit.Primitive) string {
 
 func (g *generator) recordRep(file *gen.File, r *wit.Record) string {
 	var b strings.Builder
-	b.WriteString("struct {")
-	b.WriteString("TODO any // TODO: record fields\n")
+	b.WriteString("struct {\n")
+	for _, f := range r.Fields {
+		b.WriteString(gen.FormatDocComments(f.Docs.Contents, false))
+		b.WriteString(GoName(f.Name, true))
+		b.WriteRune(' ')
+		b.WriteString(g.typeRep(file, f.Type))
+		b.WriteString("\n\n")
+	}
 	b.WriteString("}")
 	return b.String()
 }
