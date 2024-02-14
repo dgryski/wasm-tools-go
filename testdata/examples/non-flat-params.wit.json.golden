@@ -1,0 +1,2419 @@
+&wit.Resolve{
+    Worlds: {
+        &wit.World{
+            _typeOwner: wit._typeOwner{},
+            Name:       "imports",
+            Imports:    {
+                "interface-0": &wit.Interface{
+                    _typeOwner: wit._typeOwner{},
+                    _worldItem: wit._worldItem{},
+                    Name:       &"corner-case",
+                    TypeDefs:   {
+                        "t16": &wit.TypeDef{
+                            _type:      wit._type{},
+                            _worldItem: wit._worldItem{},
+                            Name:       &"t16",
+                            Kind:       &wit.Tuple{
+                                _typeDefKind: wit._typeDefKind{},
+                                Types:        {
+                                    &wit.TypeDef{
+                                        _type:      wit._type{},
+                                        _worldItem: wit._worldItem{},
+                                        Name:       &"t4",
+                                        Kind:       &wit.Tuple{
+                                            _typeDefKind: wit._typeDefKind{},
+                                            Types:        {
+                                                wit.U32{},
+                                                wit.U32{},
+                                                wit.U32{},
+                                                wit.U32{},
+                                            },
+                                        },
+                                        Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                                        Docs:  wit.Docs{},
+                                    },
+                                    &wit.TypeDef{
+                                        _type:      wit._type{},
+                                        _worldItem: wit._worldItem{},
+                                        Name:       &"t4",
+                                        Kind:       &wit.Tuple{
+                                            _typeDefKind: wit._typeDefKind{},
+                                            Types:        {
+                                                wit.U32{},
+                                                wit.U32{},
+                                                wit.U32{},
+                                                wit.U32{},
+                                            },
+                                        },
+                                        Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                                        Docs:  wit.Docs{},
+                                    },
+                                    &wit.TypeDef{
+                                        _type:      wit._type{},
+                                        _worldItem: wit._worldItem{},
+                                        Name:       &"t4",
+                                        Kind:       &wit.Tuple{
+                                            _typeDefKind: wit._typeDefKind{},
+                                            Types:        {
+                                                wit.U32{},
+                                                wit.U32{},
+                                                wit.U32{},
+                                                wit.U32{},
+                                            },
+                                        },
+                                        Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                                        Docs:  wit.Docs{},
+                                    },
+                                    &wit.TypeDef{
+                                        _type:      wit._type{},
+                                        _worldItem: wit._worldItem{},
+                                        Name:       &"t4",
+                                        Kind:       &wit.Tuple{
+                                            _typeDefKind: wit._typeDefKind{},
+                                            Types:        {
+                                                wit.U32{},
+                                                wit.U32{},
+                                                wit.U32{},
+                                                wit.U32{},
+                                            },
+                                        },
+                                        Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                                        Docs:  wit.Docs{},
+                                    },
+                                },
+                            },
+                            Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                            Docs:  wit.Docs{},
+                        },
+                        "t32": &wit.TypeDef{
+                            _type:      wit._type{},
+                            _worldItem: wit._worldItem{},
+                            Name:       &"t32",
+                            Kind:       &wit.Tuple{
+                                _typeDefKind: wit._typeDefKind{},
+                                Types:        {
+                                    &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                            Docs:  wit.Docs{},
+                        },
+                        "t4": &wit.TypeDef{
+                            _type:      wit._type{},
+                            _worldItem: wit._worldItem{},
+                            Name:       &"t4",
+                            Kind:       &wit.Tuple{
+                                _typeDefKind: wit._typeDefKind{},
+                                Types:        {
+                                    wit.U32{},
+                                    wit.U32{},
+                                    wit.U32{},
+                                    wit.U32{},
+                                },
+                            },
+                            Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                            Docs:  wit.Docs{},
+                        },
+                    },
+                    Functions: {
+                        "f": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "f",
+                            Kind:       &wit.Freestanding{},
+                            Params:     nil,
+                            Results:    nil,
+                            Docs:       wit.Docs{},
+                        },
+                        "f16-t16": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "f16-t16",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "t",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Results: {
+                                {
+                                    Name: "",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Docs: wit.Docs{},
+                        },
+                        "f16-u32": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "f16-u32",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "t",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Results: {
+                                {
+                                    Name: "",
+                                    Type: wit.U32{},
+                                },
+                            },
+                            Docs: wit.Docs{},
+                        },
+                        "f16-void": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "f16-void",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "t",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Results: nil,
+                            Docs:    wit.Docs{},
+                        },
+                        "f32-t32": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "f32-t32",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "t",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Results: {
+                                {
+                                    Name: "",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Docs: wit.Docs{},
+                        },
+                        "f32-u32": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "f32-u32",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "t",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Results: {
+                                {
+                                    Name: "",
+                                    Type: wit.U32{},
+                                },
+                            },
+                            Docs: wit.Docs{},
+                        },
+                        "f32-void": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "f32-void",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "t",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Results: nil,
+                            Docs:    wit.Docs{},
+                        },
+                        "f4-t4": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "f4-t4",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "t",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Results: {
+                                {
+                                    Name: "",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Docs: wit.Docs{},
+                        },
+                        "f4-u32": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "f4-u32",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "t",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Results: {
+                                {
+                                    Name: "",
+                                    Type: wit.U32{},
+                                },
+                            },
+                            Docs: wit.Docs{},
+                        },
+                        "f4-void": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "f4-void",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "t",
+                                    Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                },
+                            },
+                            Results: nil,
+                            Docs:    wit.Docs{},
+                        },
+                        "u16-u32-u64": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "u16-u32-u64",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "a",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "b",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "c",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "d",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "e",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "f",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "g",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "h",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "i",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "j",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "k",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "l",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "m",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "n",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "o",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "p",
+                                    Type: wit.U8{},
+                                },
+                            },
+                            Results: {
+                                {
+                                    Name: "r0",
+                                    Type: wit.U32{},
+                                },
+                                {
+                                    Name: "r1",
+                                    Type: wit.U64{},
+                                },
+                            },
+                            Docs: wit.Docs{},
+                        },
+                        "u16-u8": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "u16-u8",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "a",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "b",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "c",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "d",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "e",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "f",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "g",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "h",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "i",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "j",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "k",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "l",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "m",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "n",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "o",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "p",
+                                    Type: wit.U8{},
+                                },
+                            },
+                            Results: {
+                                {
+                                    Name: "",
+                                    Type: wit.U8{},
+                                },
+                            },
+                            Docs: wit.Docs{},
+                        },
+                        "u16-u8-u8": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "u16-u8-u8",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "a",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "b",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "c",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "d",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "e",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "f",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "g",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "h",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "i",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "j",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "k",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "l",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "m",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "n",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "o",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "p",
+                                    Type: wit.U8{},
+                                },
+                            },
+                            Results: {
+                                {
+                                    Name: "r0",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "r1",
+                                    Type: wit.U8{},
+                                },
+                            },
+                            Docs: wit.Docs{},
+                        },
+                        "u16-void": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "u16-void",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "a",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "b",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "c",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "d",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "e",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "f",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "g",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "h",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "i",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "j",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "k",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "l",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "m",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "n",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "o",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "p",
+                                    Type: wit.U8{},
+                                },
+                            },
+                            Results: nil,
+                            Docs:    wit.Docs{},
+                        },
+                        "u16-x17-u8": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "u16-x17-u8",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "a",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "b",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "c",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "d",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "e",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "f",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "g",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "h",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "i",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "j",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "k",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "l",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "m",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "n",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "o",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "p",
+                                    Type: wit.U8{},
+                                },
+                            },
+                            Results: {
+                                {
+                                    Name: "a",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "b",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "c",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "d",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "e",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "f",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "g",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "h",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "i",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "j",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "k",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "l",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "m",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "n",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "o",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "p",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "q",
+                                    Type: wit.U8{},
+                                },
+                            },
+                            Docs: wit.Docs{},
+                        },
+                        "u17-void": &wit.Function{
+                            _worldItem: wit._worldItem{},
+                            Name:       "u17-void",
+                            Kind:       &wit.Freestanding{},
+                            Params:     {
+                                {
+                                    Name: "a",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "b",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "c",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "d",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "e",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "f",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "g",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "h",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "i",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "j",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "k",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "l",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "m",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "n",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "o",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "p",
+                                    Type: wit.U8{},
+                                },
+                                {
+                                    Name: "q",
+                                    Type: wit.U8{},
+                                },
+                            },
+                            Results: nil,
+                            Docs:    wit.Docs{},
+                        },
+                    },
+                    Package: &wit.Package{
+                        Name: wit.Ident{
+                            Namespace: "examples",
+                            Package:   "non-flat-params",
+                            Extension: "",
+                            Version:   (*semver.Version)(nil),
+                        },
+                        Interfaces: {
+                            "corner-case": &wit.Interface{(CYCLIC REFERENCE)},
+                        },
+                        Worlds: {
+                            "imports": &wit.World{(CYCLIC REFERENCE)},
+                        },
+                        Docs: wit.Docs{},
+                    },
+                    Docs: wit.Docs{},
+                },
+            },
+            Exports: {},
+            Package: &wit.Package{
+                Name: wit.Ident{
+                    Namespace: "examples",
+                    Package:   "non-flat-params",
+                    Extension: "",
+                    Version:   (*semver.Version)(nil),
+                },
+                Interfaces: {
+                    "corner-case": &wit.Interface{
+                        _typeOwner: wit._typeOwner{},
+                        _worldItem: wit._worldItem{},
+                        Name:       &"corner-case",
+                        TypeDefs:   {
+                            "t16": &wit.TypeDef{
+                                _type:      wit._type{},
+                                _worldItem: wit._worldItem{},
+                                Name:       &"t16",
+                                Kind:       &wit.Tuple{
+                                    _typeDefKind: wit._typeDefKind{},
+                                    Types:        {
+                                        &wit.TypeDef{(CYCLIC REFERENCE)},
+                                        &wit.TypeDef{(CYCLIC REFERENCE)},
+                                        &wit.TypeDef{(CYCLIC REFERENCE)},
+                                        &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                                Docs:  wit.Docs{},
+                            },
+                            "t32": &wit.TypeDef{
+                                _type:      wit._type{},
+                                _worldItem: wit._worldItem{},
+                                Name:       &"t32",
+                                Kind:       &wit.Tuple{
+                                    _typeDefKind: wit._typeDefKind{},
+                                    Types:        {
+                                        &wit.TypeDef{(CYCLIC REFERENCE)},
+                                        &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                                Docs:  wit.Docs{},
+                            },
+                            "t4": &wit.TypeDef{
+                                _type:      wit._type{},
+                                _worldItem: wit._worldItem{},
+                                Name:       &"t4",
+                                Kind:       &wit.Tuple{
+                                    _typeDefKind: wit._typeDefKind{},
+                                    Types:        {
+                                        wit.U32{},
+                                        wit.U32{},
+                                        wit.U32{},
+                                        wit.U32{},
+                                    },
+                                },
+                                Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                                Docs:  wit.Docs{},
+                            },
+                        },
+                        Functions: {
+                            "f": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "f",
+                                Kind:       &wit.Freestanding{},
+                                Params:     nil,
+                                Results:    nil,
+                                Docs:       wit.Docs{},
+                            },
+                            "f16-t16": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "f16-t16",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "t",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Results: {
+                                    {
+                                        Name: "",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Docs: wit.Docs{},
+                            },
+                            "f16-u32": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "f16-u32",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "t",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Results: {
+                                    {
+                                        Name: "",
+                                        Type: wit.U32{},
+                                    },
+                                },
+                                Docs: wit.Docs{},
+                            },
+                            "f16-void": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "f16-void",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "t",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Results: nil,
+                                Docs:    wit.Docs{},
+                            },
+                            "f32-t32": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "f32-t32",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "t",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Results: {
+                                    {
+                                        Name: "",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Docs: wit.Docs{},
+                            },
+                            "f32-u32": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "f32-u32",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "t",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Results: {
+                                    {
+                                        Name: "",
+                                        Type: wit.U32{},
+                                    },
+                                },
+                                Docs: wit.Docs{},
+                            },
+                            "f32-void": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "f32-void",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "t",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Results: nil,
+                                Docs:    wit.Docs{},
+                            },
+                            "f4-t4": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "f4-t4",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "t",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Results: {
+                                    {
+                                        Name: "",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Docs: wit.Docs{},
+                            },
+                            "f4-u32": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "f4-u32",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "t",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Results: {
+                                    {
+                                        Name: "",
+                                        Type: wit.U32{},
+                                    },
+                                },
+                                Docs: wit.Docs{},
+                            },
+                            "f4-void": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "f4-void",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "t",
+                                        Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                                    },
+                                },
+                                Results: nil,
+                                Docs:    wit.Docs{},
+                            },
+                            "u16-u32-u64": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "u16-u32-u64",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "a",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "b",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "c",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "d",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "e",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "f",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "g",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "h",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "i",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "j",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "k",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "l",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "m",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "n",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "o",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "p",
+                                        Type: wit.U8{},
+                                    },
+                                },
+                                Results: {
+                                    {
+                                        Name: "r0",
+                                        Type: wit.U32{},
+                                    },
+                                    {
+                                        Name: "r1",
+                                        Type: wit.U64{},
+                                    },
+                                },
+                                Docs: wit.Docs{},
+                            },
+                            "u16-u8": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "u16-u8",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "a",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "b",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "c",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "d",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "e",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "f",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "g",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "h",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "i",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "j",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "k",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "l",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "m",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "n",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "o",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "p",
+                                        Type: wit.U8{},
+                                    },
+                                },
+                                Results: {
+                                    {
+                                        Name: "",
+                                        Type: wit.U8{},
+                                    },
+                                },
+                                Docs: wit.Docs{},
+                            },
+                            "u16-u8-u8": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "u16-u8-u8",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "a",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "b",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "c",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "d",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "e",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "f",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "g",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "h",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "i",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "j",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "k",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "l",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "m",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "n",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "o",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "p",
+                                        Type: wit.U8{},
+                                    },
+                                },
+                                Results: {
+                                    {
+                                        Name: "r0",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "r1",
+                                        Type: wit.U8{},
+                                    },
+                                },
+                                Docs: wit.Docs{},
+                            },
+                            "u16-void": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "u16-void",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "a",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "b",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "c",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "d",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "e",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "f",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "g",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "h",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "i",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "j",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "k",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "l",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "m",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "n",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "o",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "p",
+                                        Type: wit.U8{},
+                                    },
+                                },
+                                Results: nil,
+                                Docs:    wit.Docs{},
+                            },
+                            "u16-x17-u8": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "u16-x17-u8",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "a",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "b",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "c",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "d",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "e",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "f",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "g",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "h",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "i",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "j",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "k",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "l",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "m",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "n",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "o",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "p",
+                                        Type: wit.U8{},
+                                    },
+                                },
+                                Results: {
+                                    {
+                                        Name: "a",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "b",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "c",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "d",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "e",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "f",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "g",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "h",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "i",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "j",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "k",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "l",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "m",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "n",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "o",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "p",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "q",
+                                        Type: wit.U8{},
+                                    },
+                                },
+                                Docs: wit.Docs{},
+                            },
+                            "u17-void": &wit.Function{
+                                _worldItem: wit._worldItem{},
+                                Name:       "u17-void",
+                                Kind:       &wit.Freestanding{},
+                                Params:     {
+                                    {
+                                        Name: "a",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "b",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "c",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "d",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "e",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "f",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "g",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "h",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "i",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "j",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "k",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "l",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "m",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "n",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "o",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "p",
+                                        Type: wit.U8{},
+                                    },
+                                    {
+                                        Name: "q",
+                                        Type: wit.U8{},
+                                    },
+                                },
+                                Results: nil,
+                                Docs:    wit.Docs{},
+                            },
+                        },
+                        Package: &wit.Package{(CYCLIC REFERENCE)},
+                        Docs:    wit.Docs{},
+                    },
+                },
+                Worlds: {
+                    "imports": &wit.World{(CYCLIC REFERENCE)},
+                },
+                Docs: wit.Docs{},
+            },
+            Docs: wit.Docs{},
+        },
+    },
+    Interfaces: {
+        &wit.Interface{
+            _typeOwner: wit._typeOwner{},
+            _worldItem: wit._worldItem{},
+            Name:       &"corner-case",
+            TypeDefs:   {
+                "t16": &wit.TypeDef{
+                    _type:      wit._type{},
+                    _worldItem: wit._worldItem{},
+                    Name:       &"t16",
+                    Kind:       &wit.Tuple{
+                        _typeDefKind: wit._typeDefKind{},
+                        Types:        {
+                            &wit.TypeDef{(CYCLIC REFERENCE)},
+                            &wit.TypeDef{(CYCLIC REFERENCE)},
+                            &wit.TypeDef{(CYCLIC REFERENCE)},
+                            &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                    Docs:  wit.Docs{},
+                },
+                "t32": &wit.TypeDef{
+                    _type:      wit._type{},
+                    _worldItem: wit._worldItem{},
+                    Name:       &"t32",
+                    Kind:       &wit.Tuple{
+                        _typeDefKind: wit._typeDefKind{},
+                        Types:        {
+                            &wit.TypeDef{(CYCLIC REFERENCE)},
+                            &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                    Docs:  wit.Docs{},
+                },
+                "t4": &wit.TypeDef{
+                    _type:      wit._type{},
+                    _worldItem: wit._worldItem{},
+                    Name:       &"t4",
+                    Kind:       &wit.Tuple{
+                        _typeDefKind: wit._typeDefKind{},
+                        Types:        {
+                            wit.U32{},
+                            wit.U32{},
+                            wit.U32{},
+                            wit.U32{},
+                        },
+                    },
+                    Owner: &wit.Interface{(CYCLIC REFERENCE)},
+                    Docs:  wit.Docs{},
+                },
+            },
+            Functions: {
+                "f": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "f",
+                    Kind:       &wit.Freestanding{},
+                    Params:     nil,
+                    Results:    nil,
+                    Docs:       wit.Docs{},
+                },
+                "f16-t16": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "f16-t16",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "t",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Results: {
+                        {
+                            Name: "",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Docs: wit.Docs{},
+                },
+                "f16-u32": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "f16-u32",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "t",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Results: {
+                        {
+                            Name: "",
+                            Type: wit.U32{},
+                        },
+                    },
+                    Docs: wit.Docs{},
+                },
+                "f16-void": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "f16-void",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "t",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Results: nil,
+                    Docs:    wit.Docs{},
+                },
+                "f32-t32": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "f32-t32",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "t",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Results: {
+                        {
+                            Name: "",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Docs: wit.Docs{},
+                },
+                "f32-u32": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "f32-u32",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "t",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Results: {
+                        {
+                            Name: "",
+                            Type: wit.U32{},
+                        },
+                    },
+                    Docs: wit.Docs{},
+                },
+                "f32-void": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "f32-void",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "t",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Results: nil,
+                    Docs:    wit.Docs{},
+                },
+                "f4-t4": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "f4-t4",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "t",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Results: {
+                        {
+                            Name: "",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Docs: wit.Docs{},
+                },
+                "f4-u32": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "f4-u32",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "t",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Results: {
+                        {
+                            Name: "",
+                            Type: wit.U32{},
+                        },
+                    },
+                    Docs: wit.Docs{},
+                },
+                "f4-void": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "f4-void",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "t",
+                            Type: &wit.TypeDef{(CYCLIC REFERENCE)},
+                        },
+                    },
+                    Results: nil,
+                    Docs:    wit.Docs{},
+                },
+                "u16-u32-u64": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "u16-u32-u64",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "a",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "b",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "c",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "d",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "e",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "f",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "g",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "h",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "i",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "j",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "k",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "l",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "m",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "n",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "o",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "p",
+                            Type: wit.U8{},
+                        },
+                    },
+                    Results: {
+                        {
+                            Name: "r0",
+                            Type: wit.U32{},
+                        },
+                        {
+                            Name: "r1",
+                            Type: wit.U64{},
+                        },
+                    },
+                    Docs: wit.Docs{},
+                },
+                "u16-u8": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "u16-u8",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "a",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "b",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "c",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "d",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "e",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "f",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "g",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "h",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "i",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "j",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "k",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "l",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "m",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "n",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "o",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "p",
+                            Type: wit.U8{},
+                        },
+                    },
+                    Results: {
+                        {
+                            Name: "",
+                            Type: wit.U8{},
+                        },
+                    },
+                    Docs: wit.Docs{},
+                },
+                "u16-u8-u8": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "u16-u8-u8",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "a",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "b",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "c",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "d",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "e",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "f",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "g",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "h",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "i",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "j",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "k",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "l",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "m",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "n",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "o",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "p",
+                            Type: wit.U8{},
+                        },
+                    },
+                    Results: {
+                        {
+                            Name: "r0",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "r1",
+                            Type: wit.U8{},
+                        },
+                    },
+                    Docs: wit.Docs{},
+                },
+                "u16-void": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "u16-void",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "a",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "b",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "c",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "d",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "e",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "f",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "g",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "h",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "i",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "j",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "k",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "l",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "m",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "n",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "o",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "p",
+                            Type: wit.U8{},
+                        },
+                    },
+                    Results: nil,
+                    Docs:    wit.Docs{},
+                },
+                "u16-x17-u8": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "u16-x17-u8",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "a",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "b",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "c",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "d",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "e",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "f",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "g",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "h",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "i",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "j",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "k",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "l",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "m",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "n",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "o",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "p",
+                            Type: wit.U8{},
+                        },
+                    },
+                    Results: {
+                        {
+                            Name: "a",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "b",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "c",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "d",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "e",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "f",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "g",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "h",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "i",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "j",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "k",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "l",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "m",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "n",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "o",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "p",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "q",
+                            Type: wit.U8{},
+                        },
+                    },
+                    Docs: wit.Docs{},
+                },
+                "u17-void": &wit.Function{
+                    _worldItem: wit._worldItem{},
+                    Name:       "u17-void",
+                    Kind:       &wit.Freestanding{},
+                    Params:     {
+                        {
+                            Name: "a",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "b",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "c",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "d",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "e",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "f",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "g",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "h",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "i",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "j",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "k",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "l",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "m",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "n",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "o",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "p",
+                            Type: wit.U8{},
+                        },
+                        {
+                            Name: "q",
+                            Type: wit.U8{},
+                        },
+                    },
+                    Results: nil,
+                    Docs:    wit.Docs{},
+                },
+            },
+            Package: &wit.Package{
+                Name: wit.Ident{
+                    Namespace: "examples",
+                    Package:   "non-flat-params",
+                    Extension: "",
+                    Version:   (*semver.Version)(nil),
+                },
+                Interfaces: {
+                    "corner-case": &wit.Interface{(CYCLIC REFERENCE)},
+                },
+                Worlds: {
+                    "imports": &wit.World{(CYCLIC REFERENCE)},
+                },
+                Docs: wit.Docs{},
+            },
+            Docs: wit.Docs{},
+        },
+    },
+    TypeDefs: {
+        &wit.TypeDef{
+            _type:      wit._type{},
+            _worldItem: wit._worldItem{},
+            Name:       &"t4",
+            Kind:       &wit.Tuple{
+                _typeDefKind: wit._typeDefKind{},
+                Types:        {
+                    wit.U32{},
+                    wit.U32{},
+                    wit.U32{},
+                    wit.U32{},
+                },
+            },
+            Owner: &wit.Interface{(CYCLIC REFERENCE)},
+            Docs:  wit.Docs{},
+        },
+        &wit.TypeDef{
+            _type:      wit._type{},
+            _worldItem: wit._worldItem{},
+            Name:       &"t16",
+            Kind:       &wit.Tuple{
+                _typeDefKind: wit._typeDefKind{},
+                Types:        {
+                    &wit.TypeDef{(CYCLIC REFERENCE)},
+                    &wit.TypeDef{(CYCLIC REFERENCE)},
+                    &wit.TypeDef{(CYCLIC REFERENCE)},
+                    &wit.TypeDef{(CYCLIC REFERENCE)},
+                },
+            },
+            Owner: &wit.Interface{(CYCLIC REFERENCE)},
+            Docs:  wit.Docs{},
+        },
+        &wit.TypeDef{
+            _type:      wit._type{},
+            _worldItem: wit._worldItem{},
+            Name:       &"t32",
+            Kind:       &wit.Tuple{
+                _typeDefKind: wit._typeDefKind{},
+                Types:        {
+                    &wit.TypeDef{(CYCLIC REFERENCE)},
+                    &wit.TypeDef{(CYCLIC REFERENCE)},
+                },
+            },
+            Owner: &wit.Interface{(CYCLIC REFERENCE)},
+            Docs:  wit.Docs{},
+        },
+    },
+    Packages: {
+        &wit.Package{
+            Name: wit.Ident{
+                Namespace: "examples",
+                Package:   "non-flat-params",
+                Extension: "",
+                Version:   (*semver.Version)(nil),
+            },
+            Interfaces: {
+                "corner-case": &wit.Interface{(CYCLIC REFERENCE)},
+            },
+            Worlds: {
+                "imports": &wit.World{(CYCLIC REFERENCE)},
+            },
+            Docs: wit.Docs{},
+        },
+    },
+}
