@@ -312,16 +312,16 @@ func (g *generator) defineTypeDef(t *wit.TypeDef, name string) error {
 		fmt.Fprintf(file, "//\n%s", gen.FormatDocComments(t.Docs.Contents, false))
 	}
 	fmt.Fprintf(file, "type %s ", id.Name)
-	fmt.Fprint(file, g.typeDefRep(file, t))
+	fmt.Fprint(file, g.typeDefRep(file, id, t))
 	fmt.Fprint(file, "\n\n")
 
 	return nil
 }
 
-func (g *generator) typeDefRep(file *gen.File, t *wit.TypeDef) string {
+func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDef) string {
 	switch kind := t.Kind.(type) {
 	case wit.Type:
-		return g.typeRep(file, kind)
+		return g.typeRep(file, typeName, kind)
 	case *wit.Record:
 		return g.recordRep(file, kind)
 	case *wit.Resource:
@@ -333,7 +333,7 @@ func (g *generator) typeDefRep(file *gen.File, t *wit.TypeDef) string {
 	case *wit.Flags:
 		return "any /* TODO: *wit.Flags */"
 	case *wit.Enum:
-		return g.enumRep(file, kind)
+		return g.enumRep(file, typeName, kind)
 	case *wit.Tuple:
 		return "any /* TODO: *wit.Tuple */"
 	case *wit.Variant:
@@ -353,10 +353,10 @@ func (g *generator) typeDefRep(file *gen.File, t *wit.TypeDef) string {
 	}
 }
 
-func (g *generator) typeRep(file *gen.File, t wit.Type) string {
+func (g *generator) typeRep(file *gen.File, typeName gen.Ident, t wit.Type) string {
 	switch t := t.(type) {
 	case *wit.TypeDef:
-		return g.typeDefRep(file, t)
+		return g.typeDefRep(file, typeName, t)
 	case wit.Primitive:
 		return g.primitiveRep(file, t)
 	default:
@@ -411,11 +411,24 @@ func (g *generator) resourceRep(file *gen.File, r *wit.Resource) string {
 	return b.String()
 }
 
-func (g *generator) enumRep(file *gen.File, e *wit.Enum) string {
+func (g *generator) enumRep(file *gen.File, typeName gen.Ident, e *wit.Enum) string {
 	var b strings.Builder
 	disc := wit.Discriminant(len(e.Cases))
-	b.WriteString(g.typeRep(file, disc))
-	b.WriteString("\n\n// TODO: const enum cases")
+	b.WriteString(g.typeRep(file, gen.Ident{}, disc))
+	b.WriteString("\n\n")
+	b.WriteString("const (\n")
+	for i, c := range e.Cases {
+		b.WriteString(gen.FormatDocComments(c.Docs.Contents, false))
+		caseName := file.Declare(typeName.Name + GoName(c.Name))
+		b.WriteString(caseName.Name)
+		if i == 0 {
+			b.WriteRune(' ')
+			b.WriteString(typeName.Name)
+			b.WriteString(" = iota")
+		}
+		b.WriteString("\n\n")
+	}
+	b.WriteString(")\n")
 	return b.String()
 }
 
