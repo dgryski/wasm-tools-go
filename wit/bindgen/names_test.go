@@ -14,6 +14,7 @@ func TestGoName(t *testing.T) {
 		{"blocking-read", "blockingRead", "BlockingRead"},
 		{"ipv4-socket", "ipv4Socket", "IPv4Socket"},
 		{"via-ipv6", "viaIPv6", "ViaIPv6"},
+		{"fifo-queue", "fifoQueue", "FIFOQueue"},
 		{"metadata-hash-value", "metadataHashValue", "MetadataHashValue"},
 	}
 	for _, tt := range tests {
