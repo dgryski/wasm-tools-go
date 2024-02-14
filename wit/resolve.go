@@ -448,6 +448,21 @@ type Tuple struct {
 	Types []Type
 }
 
+// MonoType returns a non-nil [Type] if all types in t
+// are the same. Returns nil if t contains more than one type.
+func (t *Tuple) MonoType() Type {
+	if len(t.Types) == 0 {
+		return nil
+	}
+	typ := t.Types[0]
+	for i := 0; i < len(t.Types); i++ {
+		if t.Types[i] != typ {
+			return nil
+		}
+	}
+	return typ
+}
+
 // Despecialize despecializes [Tuple] e into a [Record] with 0-based integer field names.
 // See the [canonical ABI documentation] for more information.
 //
