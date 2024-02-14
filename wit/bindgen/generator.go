@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 
 	"github.com/ydnar/wasm-tools-go/internal/codec"
@@ -336,7 +337,7 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 	case *wit.Enum:
 		return g.enumRep(file, typeName, kind)
 	case *wit.Tuple:
-		return "any /* TODO: *wit.Tuple */"
+		return g.tupleRep(file, kind)
 	case *wit.Variant:
 		return "any /* TODO: *wit.Variant */"
 	case *wit.Option:
@@ -425,6 +426,29 @@ func (g *generator) resourceRep(file *gen.File, r *wit.Resource) string {
 	b.WriteString(file.Import(g.opts.cmPackage))
 	b.WriteString(".Resource")
 	b.WriteString("\n\n// TODO: resource methods")
+	return b.String()
+}
+
+func (g *generator) tupleRep(file *gen.File, t *wit.Tuple) string {
+	var b strings.Builder
+	if mono := t.MonoType(); mono != nil {
+		b.WriteRune('[')
+		b.WriteString(strconv.Itoa(len(t.Types)))
+		b.WriteRune(']')
+		b.WriteString(g.typeRep(file, mono))
+	} else {
+		b.WriteString(file.Import(g.opts.cmPackage))
+		b.WriteString("Tuple")
+		b.WriteString(strconv.Itoa(len(t.Types)))
+		b.WriteRune('[')
+		for i, typ := range t.Types {
+			if i > 0 {
+				b.WriteString(", ")
+			}
+			b.WriteString(g.typeRep(file, typ))
+		}
+		b.WriteRune(']')
+	}
 	return b.String()
 }
 
