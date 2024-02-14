@@ -156,8 +156,8 @@ func (g *generator) declareTypeDef(t *wit.TypeDef) error {
 	}
 	name := *t.Name
 
-	ownerID := typeDefOwner(t)
-	pkg := g.packageForIdent(ownerID)
+	ownerID := typeDefOwnerID(t)
+	pkg := g.packageFor(ownerID)
 	file := pkg.File(ownerID.Extension + GoSuffix)
 	file.GeneratedBy = g.opts.generatedBy
 
@@ -169,7 +169,7 @@ func (g *generator) declareTypeDef(t *wit.TypeDef) error {
 	return nil
 }
 
-func typeDefOwner(t *wit.TypeDef) wit.Ident {
+func typeDefOwnerID(t *wit.TypeDef) wit.Ident {
 	var id wit.Ident
 	switch owner := t.Owner.(type) {
 	case *wit.World:
@@ -217,7 +217,7 @@ func (g *generator) defineWorld(w *wit.World) error {
 	}
 	id := w.Package.Name
 	id.Extension = w.Name
-	pkg := g.packageForIdent(id)
+	pkg := g.packageFor(id)
 	g.worldPackages[w] = pkg
 
 	file := pkg.File(id.Extension + GoSuffix)
@@ -258,7 +258,7 @@ func (g *generator) defineInterface(i *wit.Interface, name string) error {
 	}
 	id := i.Package.Name
 	id.Extension = name
-	pkg := g.packageForIdent(id)
+	pkg := g.packageFor(id)
 	g.interfacePackages[i] = pkg
 
 	file := pkg.File(id.Extension + GoSuffix)
@@ -300,9 +300,8 @@ func (g *generator) defineTypeDef(t *wit.TypeDef, name string) error {
 		return nil
 	}
 
-	ownerID := typeDefOwner(t)
-	pkg := id.Package
-	file := pkg.File(ownerID.Extension + GoSuffix)
+	ownerID := typeDefOwnerID(t)
+	file := id.Package.File(ownerID.Extension + GoSuffix)
 	file.GeneratedBy = g.opts.generatedBy
 
 	fmt.Fprintf(file, "// %s represents the %s \"%s#%s\".\n", id.Name, t.WITKind(), ownerID.String(), name)
@@ -435,7 +434,7 @@ func (g *generator) defineImportedFunction(f *wit.Function, ownerID wit.Ident) e
 		return nil
 	}
 
-	pkg := g.packageForIdent(ownerID)
+	pkg := g.packageFor(ownerID)
 	file := pkg.File(ownerID.Extension + GoSuffix)
 	file.GeneratedBy = g.opts.generatedBy
 
@@ -466,7 +465,7 @@ func (g *generator) ensureEmptyAsm(pkg *gen.Package) error {
 	return err
 }
 
-func (g *generator) packageForIdent(id wit.Ident) *gen.Package {
+func (g *generator) packageFor(id wit.Ident) *gen.Package {
 	// Find existing
 	pkg := g.witPackages[id.String()]
 	if pkg != nil {
