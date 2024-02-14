@@ -130,6 +130,7 @@ var Initialisms = mapWords(
 	"abi",
 	"api",
 	"ascii",
+	"cabi",
 	"cpu",
 	"css",
 	"cwd",

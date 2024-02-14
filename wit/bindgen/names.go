@@ -17,29 +17,40 @@ func GoPackageName(name string) string {
 	}, strings.ToLower(name))
 }
 
-// ExportedName returns an idiomatic (exported CamelCase) Go name for a WIT name.
-func ExportedName(name string) string {
+// GoName returns an idiomatic (exported CamelCase) Go name for a WIT name.
+func GoName(name string, export bool) string {
 	var b strings.Builder
-	for _, word := range words(strings.ToLower(name)) {
-		if s, ok := CommonWords[word]; ok {
-			b.WriteString(s)
-		} else if gen.Initialisms[word] {
-			b.WriteString(strings.ToUpper(word))
+	for i, segment := range segments(strings.ToLower(name)) {
+		if i == 0 && !export {
+			if s, ok := Segments[segment]; ok {
+				b.WriteString(s)
+			} else {
+				b.WriteString(segment)
+			}
 		} else {
-			runes := []rune(word)
-			runes[0] = unicode.ToUpper(runes[0])
-			b.WriteString(string(runes))
+			if s, ok := ExportedSegments[segment]; ok {
+				b.WriteString(s)
+			} else if gen.Initialisms[segment] {
+				b.WriteString(strings.ToUpper(segment))
+			} else {
+				runes := []rune(segment)
+				runes[0] = unicode.ToUpper(runes[0])
+				b.WriteString(string(runes))
+			}
 		}
 	}
 	return b.String()
 }
 
-// SnakeName returns a snake_case name for a WIT name.
+// SnakeName returns a snake_case equivalent of a WIT name.
+// It may conflict with a Go keyword or predeclared identifier.
 func SnakeName(name string) string {
-	return strings.Join(words(strings.ToLower(name)), "_")
+	return strings.Join(segments(strings.ToLower(name)), "_")
 }
 
-func words(name string) []string {
+// segments splits a kebab-case WIT name into its constituent segments.
+// For example: "hello-world" splits into "hello", "world".
+func segments(name string) []string {
 	return strings.FieldsFunc(name, notLetterDigit)
 }
 
@@ -47,9 +58,14 @@ func notLetterDigit(c rune) bool {
 	return !unicode.IsLetter(c) && !unicode.IsDigit(c)
 }
 
-// CommonWords maps common WASI words to opinionated Go equivalents.
-var CommonWords = map[string]string{
-	"cabi":     "CABI",
+// Segments maps common WASI identifier segments to opinionated non-exported Go equivalents.
+var Segments = map[string]string{
+	"datetime": "dateTime",
+	"filesize": "fileSize",
+}
+
+// ExportedSegments maps common WASI identifier segments to opinionated exported Go equivalents.
+var ExportedSegments = map[string]string{
 	"datetime": "DateTime",
 	"filesize": "FileSize",
 	"ipv4":     "IPv4",
