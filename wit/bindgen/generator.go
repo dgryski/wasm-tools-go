@@ -333,7 +333,7 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 	case *wit.Borrow:
 		return g.borrowRep(file, kind)
 	case *wit.Flags:
-		return "any /* TODO: *wit.Flags */"
+		return g.flagsRep(file, typeName, kind)
 	case *wit.Enum:
 		return g.enumRep(file, typeName, kind)
 	case *wit.Tuple:
@@ -464,6 +464,43 @@ func (g *generator) tupleRep(file *gen.File, t *wit.Tuple) string {
 		}
 		b.WriteRune(']')
 	}
+	return b.String()
+}
+
+func (g *generator) flagsRep(file *gen.File, typeName gen.Ident, flags *wit.Flags) string {
+	var b strings.Builder
+
+	// FIXME: this isn't ideal
+	var typ wit.Type
+	size := flags.Size()
+	switch size {
+	case 1:
+		typ = wit.U8{}
+	case 2:
+		typ = wit.U16{}
+	case 4:
+		typ = wit.U32{}
+	case 8:
+		typ = wit.U64{}
+	default:
+		panic(fmt.Sprintf("FIXME: cannot emit a flags type with %d cases", len(flags.Flags)))
+	}
+
+	b.WriteString(g.typeRep(file, typ))
+	b.WriteString("\n\n")
+	b.WriteString("const (\n")
+	for i, flag := range flags.Flags {
+		b.WriteString(gen.FormatDocComments(flag.Docs.Contents, false))
+		flagName := file.Declare(typeName.Name + GoName(flag.Name, true))
+		b.WriteString(flagName.Name)
+		if i == 0 {
+			b.WriteRune(' ')
+			b.WriteString(typeName.Name)
+			b.WriteString(" = 1 << iota")
+		}
+		b.WriteString("\n\n")
+	}
+	b.WriteString(")\n")
 	return b.String()
 }
 
