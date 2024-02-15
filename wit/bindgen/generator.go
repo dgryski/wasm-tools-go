@@ -326,26 +326,26 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 		return g.typeRep(file, kind)
 	case *wit.Record:
 		return g.recordRep(file, kind)
+	case *wit.Tuple:
+		return g.tupleRep(file, kind)
+	case *wit.Flags:
+		return g.flagsRep(file, typeName, kind)
+	case *wit.Enum:
+		return g.enumRep(file, typeName, kind)
+	case *wit.Variant:
+		return "any /* TODO: *wit.Variant */"
+	case *wit.Result:
+		return g.resultRep(file, kind)
+	case *wit.Option:
+		return g.optionRep(file, kind)
+	case *wit.List:
+		return g.listRep(file, kind)
 	case *wit.Resource:
 		return g.resourceRep(file, kind)
 	case *wit.Own:
 		return g.ownRep(file, kind)
 	case *wit.Borrow:
 		return g.borrowRep(file, kind)
-	case *wit.Flags:
-		return g.flagsRep(file, typeName, kind)
-	case *wit.Enum:
-		return g.enumRep(file, typeName, kind)
-	case *wit.Tuple:
-		return g.tupleRep(file, kind)
-	case *wit.Variant:
-		return "any /* TODO: *wit.Variant */"
-	case *wit.Option:
-		return g.optionRep(file, kind)
-	case *wit.Result:
-		return g.resultRep(file, kind)
-	case *wit.List:
-		return g.listRep(file, kind)
 	case *wit.Future:
 		return "any /* TODO: *wit.Future */"
 	case *wit.Stream:
@@ -424,22 +424,6 @@ func (g *generator) recordRep(file *gen.File, r *wit.Record) string {
 	}
 	b.WriteString("}")
 	return b.String()
-}
-
-func (g *generator) resourceRep(file *gen.File, r *wit.Resource) string {
-	var b strings.Builder
-	b.WriteString(file.Import(g.opts.cmPackage))
-	b.WriteString(".Resource")
-	b.WriteString("\n\n// TODO: resource methods")
-	return b.String()
-}
-
-func (g *generator) ownRep(file *gen.File, o *wit.Own) string {
-	return g.typeRep(file, o.Type)
-}
-
-func (g *generator) borrowRep(file *gen.File, b *wit.Borrow) string {
-	return g.typeRep(file, b.Type)
 }
 
 func (g *generator) tupleRep(file *gen.File, t *wit.Tuple) string {
@@ -525,16 +509,6 @@ func (g *generator) enumRep(file *gen.File, typeName gen.Ident, e *wit.Enum) str
 	return b.String()
 }
 
-func (g *generator) optionRep(file *gen.File, o *wit.Option) string {
-	var b strings.Builder
-	b.WriteString(file.Import(g.opts.cmPackage))
-	b.WriteString(".Option")
-	b.WriteRune('[')
-	b.WriteString(g.typeRep(file, o.Type))
-	b.WriteRune(']')
-	return b.String()
-}
-
 func (g *generator) resultRep(file *gen.File, r *wit.Result) string {
 	var b strings.Builder
 	b.WriteString(file.Import(g.opts.cmPackage))
@@ -565,6 +539,16 @@ func (g *generator) resultRep(file *gen.File, r *wit.Result) string {
 	return b.String()
 }
 
+func (g *generator) optionRep(file *gen.File, o *wit.Option) string {
+	var b strings.Builder
+	b.WriteString(file.Import(g.opts.cmPackage))
+	b.WriteString(".Option")
+	b.WriteRune('[')
+	b.WriteString(g.typeRep(file, o.Type))
+	b.WriteRune(']')
+	return b.String()
+}
+
 func (g *generator) listRep(file *gen.File, l *wit.List) string {
 	var b strings.Builder
 	b.WriteString(file.Import(g.opts.cmPackage))
@@ -573,6 +557,22 @@ func (g *generator) listRep(file *gen.File, l *wit.List) string {
 	b.WriteString(g.typeRep(file, l.Type))
 	b.WriteRune(']')
 	return b.String()
+}
+
+func (g *generator) resourceRep(file *gen.File, r *wit.Resource) string {
+	var b strings.Builder
+	b.WriteString(file.Import(g.opts.cmPackage))
+	b.WriteString(".Resource")
+	b.WriteString("\n\n// TODO: resource methods")
+	return b.String()
+}
+
+func (g *generator) ownRep(file *gen.File, o *wit.Own) string {
+	return g.typeRep(file, o.Type)
+}
+
+func (g *generator) borrowRep(file *gen.File, b *wit.Borrow) string {
+	return g.typeRep(file, b.Type)
 }
 
 func (g *generator) defineImportedFunction(f *wit.Function, ownerID wit.Ident) error {
