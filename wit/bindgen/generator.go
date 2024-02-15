@@ -333,7 +333,7 @@ func (g *generator) typeDefRep(file *gen.File, typeName gen.Ident, t *wit.TypeDe
 	case *wit.Enum:
 		return g.enumRep(file, typeName, kind)
 	case *wit.Variant:
-		return "any /* TODO: *wit.Variant */"
+		return g.variantRep(file, typeName, kind)
 	case *wit.Result:
 		return g.resultRep(file, kind)
 	case *wit.Option:
@@ -506,6 +506,31 @@ func (g *generator) enumRep(file *gen.File, typeName gen.Ident, e *wit.Enum) str
 		b.WriteString("\n\n")
 	}
 	b.WriteString(")\n")
+	return b.String()
+}
+
+func (g *generator) variantRep(file *gen.File, typeName gen.Ident, v *wit.Variant) string {
+	// If the variant has no associated types, represent the variant as an enum.
+	if e := v.Enum(); e != nil {
+		return g.enumRep(file, typeName, e)
+	}
+	var b strings.Builder
+	// disc := wit.Discriminant(len(v.Cases))
+	// b.WriteString(g.typeRep(file, disc))
+	// b.WriteString("\n\n")
+	// b.WriteString("const (\n")
+	// for i, c := range e.Cases {
+	// 	b.WriteString(gen.FormatDocComments(c.Docs.Contents, false))
+	// 	caseName := file.Declare(typeName.Name + GoName(c.Name, true))
+	// 	b.WriteString(caseName.Name)
+	// 	if i == 0 {
+	// 		b.WriteRune(' ')
+	// 		b.WriteString(typeName.Name)
+	// 		b.WriteString(" = iota")
+	// 	}
+	// 	b.WriteString("\n\n")
+	// }
+	// b.WriteString(")\n")
 	return b.String()
 }
 

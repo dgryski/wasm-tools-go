@@ -236,6 +236,13 @@ func (t *TypeDef) Align() uintptr {
 	return t.Kind.Align()
 }
 
+// HasPointer returns whether the [ABI] representation of [TypeDef] t contains a pointer.
+//
+// [ABI]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (t *TypeDef) HasPointer() bool {
+	return t.Kind.HasPointer()
+}
+
 // Constructor returns the constructor for [TypeDef] t, or nil if none.
 // Currently t must be a [Resource] to have a constructor.
 func (t *TypeDef) Constructor() *Function {
@@ -323,6 +330,18 @@ func (r *Record) Align() uintptr {
 	return a
 }
 
+// HasPointer returns whether the [ABI] representation of [Record] r contains a pointer.
+//
+// [ABI]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (r *Record) HasPointer() bool {
+	for _, f := range r.Fields {
+		if f.Type.HasPointer() {
+			return true
+		}
+	}
+	return false
+}
+
 // Field represents a field in a [Record].
 type Field struct {
 	Name string
@@ -345,6 +364,13 @@ func (r *Resource) Size() uintptr { return 4 }
 //
 // [ABI byte alignment]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md#alignment
 func (r *Resource) Align() uintptr { return 4 }
+
+// HasPointer returns whether the [ABI] representation of [Resource] r contains a pointer.
+//
+// [ABI byte alignment]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (r *Resource) HasPointer() bool {
+	return false
+}
 
 // Handle represents a WIT [handle type].
 // It conforms to the [Node], [Sized], and [TypeDefKind] interfaces.
@@ -374,6 +400,9 @@ func (_handle) Size() uintptr { return 4 }
 //
 // [ABI byte alignment]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md#alignment
 func (_handle) Align() uintptr { return 4 }
+
+// HasPointer returns whether the ABI representation of a _handle contains a pointer.
+func (_handle) HasPointer() bool { return false }
 
 // Own represents an WIT [owned handle].
 // It implements the [Handle], [Node], [Sized], and [TypeDefKind] interfaces.
@@ -429,6 +458,12 @@ func (f *Flags) Align() uintptr {
 	}
 	return 4
 }
+
+// HasPointer returns whether the [ABI] representation of [Flags] contains a pointer.
+// This always returns false.
+//
+// [ABI]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (*Flags) HasPointer() bool { return false }
 
 // Flag represents a single flag value in a [Flags] type.
 // It implements the [Node] interface.
@@ -496,6 +531,13 @@ func (t *Tuple) Align() uintptr {
 	return t.Despecialize().Align()
 }
 
+// HasPointer returns whether the [ABI] representation of a [Tuple] contains a pointer.
+//
+// [ABI]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (t *Tuple) HasPointer() bool {
+	return t.Despecialize().HasPointer()
+}
+
 // Variant represents a WIT [variant type], a tagged/discriminated union.
 // A variant type declares one or more cases. Each case has a name and, optionally,
 // a type of data associated with that case.
@@ -505,6 +547,39 @@ func (t *Tuple) Align() uintptr {
 type Variant struct {
 	_typeDefKind
 	Cases []Case
+}
+
+// Enum attempts to represent [Variant] v as an [Enum].
+// This will only succeed if v has no associated types. If v has
+// associated types, then it will return nil.
+func (v *Variant) Enum() *Enum {
+	types := v.Types()
+	if len(types) > 0 {
+		return nil
+	}
+	e := &Enum{
+		Cases: make([]EnumCase, len(v.Cases)),
+	}
+	for i := range v.Cases {
+		e.Cases[i].Name = v.Cases[i].Name
+		e.Cases[i].Docs = v.Cases[i].Docs
+	}
+	return e
+}
+
+// Types returns the unique associated types in [Variant] v.
+func (v *Variant) Types() []Type {
+	var types []Type
+	typeMap := make(map[Type]bool)
+	for i := range v.Cases {
+		t := v.Cases[i].Type
+		if t == nil || typeMap[t] {
+			continue
+		}
+		types = append(types, t)
+		typeMap[t] = true
+	}
+	return types
 }
 
 // Size returns the [ABI byte size] for [Variant] v.
@@ -522,6 +597,17 @@ func (v *Variant) Size() uintptr {
 // [ABI byte alignment]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md#alignment
 func (v *Variant) Align() uintptr {
 	return max(Discriminant(len(v.Cases)).Align(), v.maxCaseAlign())
+}
+
+// HasPointer returns true if [Variant] v has an associated type
+// that contains a pointer (e.g. string, list).
+func (v *Variant) HasPointer() bool {
+	for _, t := range v.Types() {
+		if t.HasPointer() {
+			return true
+		}
+	}
+	return false
 }
 
 func (v *Variant) maxCaseSize() uintptr {
@@ -596,6 +682,13 @@ func (e *Enum) Align() uintptr {
 	return e.Despecialize().Align()
 }
 
+// HasPointer returns whether the [ABI] representation of an [Enum] contains a pointer.
+//
+// [ABI]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (e *Enum) HasPointer() bool {
+	return e.Despecialize().HasPointer()
+}
+
 // EnumCase represents a single case in an [Enum].
 // It implements the [Node] interface.
 type EnumCase struct {
@@ -645,6 +738,13 @@ func (o *Option) Align() uintptr {
 	return o.Despecialize().Align()
 }
 
+// HasPointer returns whether the [ABI] representation of an [Option] contains a pointer.
+//
+// [ABI]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (o *Option) HasPointer() bool {
+	return o.Type.HasPointer()
+}
+
 // Result represents a WIT [result type], which is the result of a function call,
 // returning an optional value and/or an optional error. It is roughly equivalent to
 // the Go pattern of returning (T, error).
@@ -688,6 +788,13 @@ func (r *Result) Align() uintptr {
 	return r.Despecialize().Align()
 }
 
+// HasPointer returns whether the [ABI] representation of a [Result] contains a pointer.
+//
+// [ABI]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (r *Result) HasPointer() bool {
+	return r.Despecialize().HasPointer()
+}
+
 // List represents a WIT [list type], which is an ordered vector of an arbitrary type.
 // It implements the [Node], [Sized], and [TypeDefKind] interfaces.
 //
@@ -706,6 +813,12 @@ func (*List) Size() uintptr { return 8 } // [2]int32
 //
 // [ABI byte alignment]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md#alignment
 func (*List) Align() uintptr { return 8 } // [2]int32
+
+// HasPointer returns whether the [ABI] representation of a [List] contains a pointer.
+// This always returns true.
+//
+// [ABI]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (*List) HasPointer() bool { return true }
 
 // Future represents a WIT [future type], expected to be part of [WASI Preview 3].
 // It implements the [Node], [Sized], and [TypeDefKind] interfaces.
@@ -729,6 +842,12 @@ func (*Future) Size() uintptr { return 0 }
 // [ABI byte alignment]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md#alignment
 func (*Future) Align() uintptr { return 0 }
 
+// HasPointer returns whether the [ABI] representation of a [Future] contains a pointer.
+// TODO: what is the ABI representation of a stream?
+//
+// [ABI]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (*Future) HasPointer() bool { return false }
+
 // Stream represents a WIT [stream type], expected to be part of [WASI Preview 3].
 // It implements the [Node], [Sized], and [TypeDefKind] interfaces.
 //
@@ -751,6 +870,12 @@ func (*Stream) Size() uintptr { return 0 }
 //
 // [ABI byte alignment]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md#alignment
 func (*Stream) Align() uintptr { return 0 }
+
+// HasPointer returns whether the [ABI] representation of a [Stream] contains a pointer.
+// TODO: what is the ABI representation of a stream?
+//
+// [ABI]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/CanonicalABI.md
+func (*Stream) HasPointer() bool { return false }
 
 // TypeOwner is the interface implemented by any type that can own a TypeDef,
 // currently [World] and [Interface].
@@ -868,6 +993,17 @@ func (_primitive[T]) Align() uintptr {
 		return 4 // int32
 	default:
 		return unsafe.Alignof(v)
+	}
+}
+
+// HasPointer returns whether the ABI representation of this type contains a pointer.
+func (_primitive[T]) HasPointer() bool {
+	var v T
+	switch any(v).(type) {
+	case string:
+		return true
+	default:
+		return false
 	}
 }
 
