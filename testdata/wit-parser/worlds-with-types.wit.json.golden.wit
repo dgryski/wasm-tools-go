@@ -18,7 +18,7 @@ world foo {
 
 world the-test {
 	record a { x: u32 }
-	variant b { c(a), }
+	variant b { c(a) }
 	import foo: func(a: a) -> b;
 	export bar: func(a: a) -> b;
 }

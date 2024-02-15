@@ -39,7 +39,11 @@ func unwrap(s string) string {
 		}
 		b.WriteString(strings.Trim(line, " \t\r\n"))
 	}
-	return b.String()
+	line, found := strings.CutSuffix(b.String(), ", }")
+	if found {
+		line += " }"
+	}
+	return line
 }
 
 // WITKind returns the WIT kind.

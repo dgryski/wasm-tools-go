@@ -2752,7 +2752,7 @@ interface types {
 	}
 
 	/// This type corresponds to HTTP standard Related Schemes.
-	variant scheme { HTTP, HTTPS, other(string), }
+	variant scheme { HTTP, HTTPS, other(string) }
 
 	/// This type corresponds to the HTTP standard Status Code.
 	type status-code = u16;

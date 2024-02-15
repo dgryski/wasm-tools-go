@@ -27,13 +27,13 @@ interface types {
 	type t29 = tuple<u32, u64>;
 	type t3 = u32;
 	flags t30 { }
-	flags t31 { a, b, c, }
-	flags t32 { a, b, c, }
-	variant t33 { a, }
-	variant t34 { a, b, }
-	variant t35 { a, b, }
-	variant t36 { a, b(u32), }
-	variant t37 { a, b(option<u32>), }
+	flags t31 { a, b, c }
+	flags t32 { a, b, c }
+	variant t33 { a }
+	variant t34 { a, b }
+	variant t35 { a, b }
+	variant t36 { a, b(u32) }
+	variant t37 { a, b(option<u32>) }
 	type t4 = u64;
 	enum t41 { a, b, c }
 	enum t42 { a, b, c }
