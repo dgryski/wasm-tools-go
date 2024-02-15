@@ -474,13 +474,11 @@ func (f *Flags) WIT(ctx Node, name string) string {
 	var b strings.Builder
 	b.WriteString("flags ")
 	b.WriteString(escape(name))
-	b.WriteString(" {")
+	b.WriteString(" {\n")
 	if len(f.Flags) > 0 {
 		for i := range f.Flags {
-			if i > 0 {
-				b.WriteString(", ")
-			}
-			b.WriteString(f.Flags[i].WIT(ctx, ""))
+			b.WriteString(indent(f.Flags[i].WIT(ctx, "")))
+			b.WriteString(",\n")
 		}
 	}
 	b.WriteRune('}')
@@ -542,12 +540,9 @@ func (v *Variant) WIT(ctx Node, name string) string {
 	if len(v.Cases) > 0 {
 		b.WriteRune('\n')
 		for i := range v.Cases {
-			if i > 0 {
-				b.WriteString(",\n")
-			}
 			b.WriteString(indent(v.Cases[i].WIT(ctx, "")))
+			b.WriteString(",\n")
 		}
-		b.WriteRune('\n')
 	}
 	b.WriteRune('}')
 	if ctx == nil {
