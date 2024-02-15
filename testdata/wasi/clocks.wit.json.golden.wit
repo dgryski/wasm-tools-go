@@ -371,7 +371,7 @@ interface wall-clock {
 	/// A time and date in seconds plus nanoseconds.
 	record datetime {
 		seconds: u64,
-		nanoseconds: u32
+		nanoseconds: u32,
 	}
 
 	/// Read the current value of the clock.

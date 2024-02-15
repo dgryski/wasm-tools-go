@@ -392,12 +392,9 @@ func (r *Record) WIT(ctx Node, name string) string {
 	if len(r.Fields) > 0 {
 		b.WriteRune('\n')
 		for i := range r.Fields {
-			if i > 0 {
-				b.WriteString(",\n")
-			}
 			b.WriteString(indent(r.Fields[i].WIT(ctx, "")))
+			b.WriteString(",\n")
 		}
-		b.WriteRune('\n')
 	}
 	b.WriteRune('}')
 	if ctx == nil {

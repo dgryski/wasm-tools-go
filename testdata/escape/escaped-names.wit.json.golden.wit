@@ -20,11 +20,11 @@ interface %interface {
 	enum error { ok, fail }
 	record %export {
 		headers: list<tuple<list<u8>, list<u8>>>,
-		body: list<u8>
+		body: list<u8>,
 	}
 	record %record {
 		%enum: %enum,
-		%result: result<string, error>
+		%result: result<string, error>,
 	}
 	%func: func(rec: %record) -> result<%export, error>;
 }
